@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.robot.util;
 
 import org.firstinspires.ftc.teamcode.lib.geometry.Rotation2d;
 import org.firstinspires.ftc.teamcode.lib.geometry.Translation2d;
+import org.firstinspires.ftc.teamcode.lib.util.Units;
 
 /**
  * With this software template, a library is included which contains
@@ -63,5 +64,21 @@ public class MathExample {
         //The x and y can also be requested back from the translation
         double x = translation.getX();
         double y = translation.getY();
+    }
+
+    /**
+     * Example of how to convert units with library functions
+     */
+    public void unitConversion(){
+
+        //The library also contains several functions to convert between certain units
+        //For example for distances
+        double distanceInches = 2.3;
+        double distanceMeters = Units.inchesToMeters(distanceInches);
+
+        //And angles
+        double angleDegrees = 45;
+        double angleRadians = Units.degreesToRadians(angleDegrees);
+
     }
 }
