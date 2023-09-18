@@ -23,12 +23,12 @@ public class Rotation2d {
     /**
      * Constructs a Rotation2d with the given radian value.
      *
-     * @param value The value of the angle in radians.
+     * @param radians The value of the angle in radians.
      */
-    public Rotation2d(double value) {
-      m_value = value;
-      m_cos = Math.cos(value);
-      m_sin = Math.sin(value);
+    public Rotation2d(double radians) {
+      m_value = radians;
+      m_cos = Math.cos(radians);
+      m_sin = Math.sin(radians);
     }
   
     /**
