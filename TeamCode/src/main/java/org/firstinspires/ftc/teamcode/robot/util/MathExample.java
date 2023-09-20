@@ -80,5 +80,9 @@ public class MathExample {
         double angleDegrees = 45;
         double angleRadians = Units.degreesToRadians(angleDegrees);
 
+        //And velocities
+        double speedRPM = 50; //RPM = Rotations Per Minute
+        double speedRadPerS = Units.rotationsPerMinuteToRadiansPerSecond(speedRPM); //Rad/s = radians per second
+
     }
 }
