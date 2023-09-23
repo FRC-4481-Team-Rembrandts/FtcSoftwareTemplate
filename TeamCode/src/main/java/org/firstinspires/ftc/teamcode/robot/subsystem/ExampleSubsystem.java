@@ -23,12 +23,12 @@ public class ExampleSubsystem {
     private double upPosition = 0.5;
 
     /**
-     * This is the initializer of the subsystem
+     * This is the constructor of the subsystem
      * This is the function that will be run when the subsystem is created,
-     * which happens at the beginning of the program.
-     * The initializer should have the same name as the class (ExampleSubsystem in this case)
+     * which happens at the beginning of an OpMode.
+     * The constructor should have the same name as the class (ExampleSubsystem in this case).
      *
-     * @param hardwareMap This is the input of the initializer, which will be used
+     * @param hardwareMap This is the input of the constructor, which will be used
      *                    to link the motors and servos in the code to the motors and servos
      *                    on the actual robot
      */
@@ -48,12 +48,18 @@ public class ExampleSubsystem {
          */
         myMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        /*
+         * Tell the motors to use the integrated encoders
+         * This gives a bit more precision while controlling the motors
+         */
+        myMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         // Servos can also be extracted from the hardwareMap similar to DC motors
         myServo = hardwareMap.get(Servo.class, "servo1");
     }
 
     /*
-    * After the initializer the functions of the subsystem can be defined.
+    * After the constructor the functions of the subsystem can be defined.
     * For this example subsystems the functions are:
     * flipDown,
     * flipUp,
