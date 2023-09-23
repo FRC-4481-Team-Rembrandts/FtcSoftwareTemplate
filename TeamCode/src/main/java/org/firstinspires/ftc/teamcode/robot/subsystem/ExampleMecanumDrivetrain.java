@@ -85,10 +85,25 @@ public class ExampleMecanumDrivetrain {
          * ATTENTION: this math is by no means correctly, it is just to show
          * how a drive function could be structured
          */
-        double frontRightPower = 2 * chassisSpeeds.vxMetersPerSecond - 3 * chassisSpeeds.vyMetersPerSecond + chassisSpeeds.omegaRadiansPerSecond;
-        double frontLeftPower = 2 * chassisSpeeds.vxMetersPerSecond - 3 * chassisSpeeds.vyMetersPerSecond + chassisSpeeds.omegaRadiansPerSecond;
-        double backRightPower = 2 * chassisSpeeds.vxMetersPerSecond - 3 * chassisSpeeds.vyMetersPerSecond + chassisSpeeds.omegaRadiansPerSecond;
-        double backLeftPower = 2 * chassisSpeeds.vxMetersPerSecond - 3 * chassisSpeeds.vyMetersPerSecond + chassisSpeeds.omegaRadiansPerSecond;
+        double rightFrontPower = 2 * chassisSpeeds.vxMetersPerSecond - 3 * chassisSpeeds.vyMetersPerSecond + chassisSpeeds.omegaRadiansPerSecond;
+        double leftFrontPower = 2 * chassisSpeeds.vxMetersPerSecond - 3 * chassisSpeeds.vyMetersPerSecond + chassisSpeeds.omegaRadiansPerSecond;
+        double rightBackPower = 2 * chassisSpeeds.vxMetersPerSecond - 3 * chassisSpeeds.vyMetersPerSecond + chassisSpeeds.omegaRadiansPerSecond;
+        double leftBackPower = 2 * chassisSpeeds.vxMetersPerSecond - 3 * chassisSpeeds.vyMetersPerSecond + chassisSpeeds.omegaRadiansPerSecond;
 
+        rightFront.setPower(rightFrontPower);
+        leftFront.setPower(leftFrontPower);
+        rightBack.setPower(rightBackPower);
+        leftBack.setPower(leftBackPower);
+
+    }
+
+    /**
+     * Stop all motors of the drivetrain
+     */
+    public void stop(){
+        rightFront.setPower(0);
+        leftFront.setPower(0);
+        rightBack.setPower(0);
+        leftBack.setPower(0);
     }
 }
