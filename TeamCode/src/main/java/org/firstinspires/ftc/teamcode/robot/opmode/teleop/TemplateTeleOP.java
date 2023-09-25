@@ -9,6 +9,7 @@ import org.firstinspires.ftc.teamcode.lib.geometry.Rotation2d;
 import org.firstinspires.ftc.teamcode.lib.kinematics.ChassisSpeeds;
 import org.firstinspires.ftc.teamcode.robot.subsystem.ExampleMecanumDrivetrain;
 import org.firstinspires.ftc.teamcode.robot.subsystem.ExampleSubsystem;
+import org.firstinspires.ftc.teamcode.robot.subsystem.ExampleTankDrivetrain;
 
 /**
  * This file is a template for an "OpMode".
@@ -40,6 +41,7 @@ public class TemplateTeleOP extends OpMode
      */
     private ExampleSubsystem exampleSubsystem;
     private ExampleMecanumDrivetrain exampleMecanumDrivetrain;
+    private ExampleTankDrivetrain exampleTankDrivetrain;
 
     /**
      * Code to run ONCE when the driver hits INIT
@@ -55,6 +57,7 @@ public class TemplateTeleOP extends OpMode
          */
         exampleSubsystem = new ExampleSubsystem(hardwareMap);
         exampleMecanumDrivetrain = new ExampleMecanumDrivetrain(hardwareMap);
+        exampleTankDrivetrain = new ExampleTankDrivetrain(hardwareMap);
 
         // Tell the driver that initialization is complete via the Driver Station
         telemetry.addData("Status", "Initialized");
@@ -100,10 +103,17 @@ public class TemplateTeleOP extends OpMode
         //The y position of the stick is the input of the function
         exampleSubsystem.setMotorSpeed(gamepad2.left_stick_y);
 
+        /*
+         * Several examples to control different drivetrains will be discussed below
+         * Remember that you only need to use one way to control your drivetrain,
+         * so you don't have to leave all examples in this file, you can delete the parts below
+         * that you don't want to use
+         */
+
         //Control the drivetrain using the two joysticks of the 1st controller
         //The ChassisSpeeds object will be used to store the desired speeds of the robot
         double forwardSpeed = gamepad1.left_stick_x;
-        double sidewaysSpeed = -gamepad1.left_stick_y; //Y stick of the controller is inverted
+        double sidewaysSpeed = -gamepad1.left_stick_y;  //Pushing the stick forward gives negative values, so the Y value should be inverted
         double rotationalSpeed = gamepad1.right_stick_x;
         ChassisSpeeds chassisSpeeds = new ChassisSpeeds(forwardSpeed, sidewaysSpeed, rotationalSpeed);
 
@@ -122,13 +132,20 @@ public class TemplateTeleOP extends OpMode
         Rotation2d exampleRobotAngle = Rotation2d.fromDegrees(10);
 
         double xSpeed = gamepad1.left_stick_x;
-        double ySpeed = -gamepad1.left_stick_y; //Y stick of the controller is inverted
+        double ySpeed = -gamepad1.left_stick_y; //Pushing the stick forward gives negative values, so the Y value should be inverted
         double rotationalSpeed1 = gamepad1.right_stick_x;
 
         ChassisSpeeds chassisSpeedsFromFieldRelative = ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rotationalSpeed1, exampleRobotAngle);
 
         //The ChassisSpeeds can now be used in the same way as before
         exampleMecanumDrivetrain.mecanumDrive(chassisSpeedsFromFieldRelative);
+
+        //For a tank drivetrain, its a little bit easier
+        //Here, we will use the left stick for forward/backward
+        double forward = -gamepad1.left_stick_y; //Pushing the stick forward gives negative values, so the Y value should be inverted
+        double rotation = gamepad1.right_stick_x;
+
+        exampleTankDrivetrain.tankDrive(forward, rotation);
 
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());
