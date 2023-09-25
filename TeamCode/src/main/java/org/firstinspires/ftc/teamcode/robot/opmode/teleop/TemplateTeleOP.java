@@ -128,7 +128,7 @@ public class TemplateTeleOP extends OpMode
         //which can measure the angle of the robot, called the IMU
         //How exactly to read out the IMU can be found in the UTIL folder
         //How to use the Rotation2d object is also shown there
-        //For now we will just take an arbitrary value
+        //For now we will just take a random value (10 in this case)
         Rotation2d exampleRobotAngle = Rotation2d.fromDegrees(10);
 
         double xSpeed = gamepad1.left_stick_x;
